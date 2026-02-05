@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
@@ -12,8 +13,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-       $supplier=Supplier::all();
-       return view('supplier.index',compact('supplier'));
+        $supplier = Supplier::all();
+        return view('admin.suppliers.index', compact('supplier'));
     }
 
     /**
@@ -21,7 +22,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('suppliers.create');
+        return view('admin.suppliers.create');
     }
 
     /**
@@ -29,35 +30,41 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required|numeric',
-        'city' => 'nullable'
-    ]);
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'city' => 'nullable'
+        ]);
 
-    $data = $request->all();
-    Supplier::create($data);
-    return redirect()->route('suppliers.index');
+        try {
+            $data = $request->all();
+            Supplier::create($data);
+
+            return redirect()->route('admin.suppliers.index')
+                ->with('success', 'Supplier created successfully.');
+        } catch (\Exception $e) {
+            return back()
+                ->withInput()
+                ->with('error', 'An error occurred while creating the supplier.');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Supplier $supplier)
     {
-    $supplier = Supplier::findOrFail($id);
-    return view('suppliers.show', compact('supplier')); 
+        return view('admin.suppliers.show', compact('supplier'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Supplier $supplier)
     {
-        $supplier=Supplier::findOrFail($id);
-        return view('suppliers.edit',compact('supplier'));
+        return view('admin.suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -65,27 +72,36 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-         $request->validate([
-        'first_name' => 'required',
-        'last_name' => 'required',
-        'email' => 'required|email',
-        'phone' => 'required|numeric',
-        'city' => 'nullable'
-    ]);
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'city' => 'nullable'
+        ]);
 
 
-    $supplier = Supplier::findOrFail($id);
-    $supplier->update($request->all());
-    return redirect()->route('suppliers.index');
+        try {
+            $supplier->update($request->all());
+            return redirect()->route('admin.suppliers.index')->with('success', 'Supplier updated successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'An error occurred while updating the supplier');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        $supplier = Supplier::findOrFail($id);
-        $supplier->delete();
-        return redirect()->route('suppliers.index');
+        try {
+            $supplier->delete();
+
+            return redirect()->route('admin.suppliers.index')
+                ->with('success', 'Supplier deleted successfully.');
+        } catch (\Exception $e) {
+            return back()
+                ->with('error', 'An error occurred while deleting the supplier.');
+        }
     }
 }
