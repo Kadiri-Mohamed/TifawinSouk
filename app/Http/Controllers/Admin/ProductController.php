@@ -70,7 +70,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $suppliers = Supplier::all();
 
-        return view('admin.admin.products.edit', compact('product', 'categories', 'suppliers'));
+        return view('admin.products.edit', compact('product', 'categories', 'suppliers'));
     }
 
     /**
