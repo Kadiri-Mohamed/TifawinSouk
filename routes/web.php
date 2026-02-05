@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\ProductController;
 
 
 use App\Http\Controllers\Admin\SupplierController;
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -36,6 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
+    Route::get('Admin/suppliers', [SupplierController::class, 'index'])->name('admin.suppliers.index');
+    Route::get('Admin/suppliers/create', [SupplierController::class, 'create'])->name('admin.suppliers.create');
+    Route::post('Admin/suppliers', [SupplierController::class, 'store'])->name('admin.suppliers.store');
+    Route::get('Admin/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('admin.suppliers.edit');
+    Route::put('Admin/suppliers/{supplier}', [SupplierController::class, 'update'])->name('admin.suppliers.update');
+    Route::delete('Admin/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('admin.suppliers.destroy');
 
 });
 
