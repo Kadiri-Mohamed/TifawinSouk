@@ -26,5 +26,13 @@ class Product extends Model
         'price' => 'decimal:2',
         'stock' => 'integer',
     ];
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function supplier(){
+        return $this->belongsTo(Supplier::class);
+    }   
     
 }

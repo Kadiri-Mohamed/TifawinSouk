@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['category', 'supplier'])->latest()->paginate(10);
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $suppliers = Supplier::all();
 
-        return view('products.create', compact('categories', 'suppliers'));
+        return view('admin.products.create', compact('categories', 'suppliers'));
     }
 
     /**
@@ -45,9 +45,12 @@ class ProductController extends Controller
             'image_path' => 'nullable|string',
         ]);
 
-        Product::create($validated);
-
-        return redirect()->route('products.index')->with('success', 'Product created successfully');
+        try {
+            Product::create($validated);
+            return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.products.index')->with('error', 'Error creating product: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -56,7 +59,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $product->load(['category', 'supplier']);
-        return view('products.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -67,7 +70,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $suppliers = Supplier::all();
 
-        return view('products.edit', compact('product', 'categories', 'suppliers'));
+        return view('admin.admin.products.edit', compact('product', 'categories', 'suppliers'));
     }
 
     /**
@@ -86,9 +89,13 @@ class ProductController extends Controller
             'image_path' => 'nullable|string',
         ]);
 
-        $product->update($validated);
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully');
+        try {
+            $product->update($validated);
+            return redirect()->route('admin.products.index')->with('success', 'Product updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.products.index')->with('error', 'Error updating product: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -96,8 +103,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+        try {
+            $product->delete();
+            return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.products.index')->with('error', 'Error deleting product: ' . $e->getMessage());
+        }
     }
 }
