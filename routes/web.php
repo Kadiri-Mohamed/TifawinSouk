@@ -21,4 +21,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

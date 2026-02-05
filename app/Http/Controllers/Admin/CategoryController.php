@@ -32,9 +32,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'required|string|unique',
-            'description' => 'nullable|string',
+            'name' => 'required|string|min:3|max:255',
+            'slug' => 'required|string|unique:categories',
+            'description' => 'nullable|string|min:10',
         ]);
 
         Category::create([
@@ -64,7 +64,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:3|max:50',
+            'slug' => 'required|string|unique:category,slug',
+            'description' => 'nullable|string|min:10',
+        ]);
+
+        $filtred = $request->only(['name', 'slug', 'description']);
+        $category->update($filtred);
+
+        return redirect()->route('categories.index');
     }
 
     public function destroy(Category $category)
