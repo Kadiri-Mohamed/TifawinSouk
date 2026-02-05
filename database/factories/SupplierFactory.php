@@ -16,8 +16,12 @@ class SupplierFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            //
-        ];
+       return [
+    'first_name'=> $this->faker->firstName,
+    'last_name'=> $this->faker->lastName,
+    'email'=> $this->faker->unique()->safeEmail,
+    'phone'=> $this->faker->phoneNumber,
+    'city'=> $this->faker->city,
+];
     }
 }
