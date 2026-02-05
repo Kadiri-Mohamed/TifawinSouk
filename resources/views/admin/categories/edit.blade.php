@@ -19,11 +19,6 @@
     </div>
     <br>
     <div>
-        <label for="slug">Slug:</label><br>
-        <input type="text" id="slug" name="slug" value="{{ old('slug', $category->slug) }}" required>
-    </div>
-    <br>
-    <div>
         <label for="description">Description:</label><br>
         <textarea id="description" name="description">{{ old('description', $category->description) }}</textarea>
     </div>
