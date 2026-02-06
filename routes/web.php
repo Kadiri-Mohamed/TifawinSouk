@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\OrderItemController as AdminOrderItemController;
+use App\Http\Controllers\Client\CartController;
 
 use App\Http\Controllers\Admin\SupplierController;
 
@@ -55,6 +56,14 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/order-items/{order}', [AdminOrderItemController::class, 'getOrderItems'])->name('admin.order-items.getOrderItems');
     Route::get('admin/order-items', [AdminOrderItemController::class, 'index'])->name('admin.order-items.index');
     
+
+        Route::get('Client/carts', [CartController::class, 'index'])->name('client.carts.index');
+    Route::get('Client/carts/create', [CartController::class, 'create'])->name('client.carts.create');
+    Route::post('Client/carts', [CartController::class, 'store'])->name('client.carts.store');
+    Route::get('Client/carts/{cart}/edit', [CartController::class, 'edit'])->name('client.carts.edit');
+    Route::put('Client/carts/{cart}', [CartController::class, 'update'])->name('client.carts.update');
+    Route::delete('Client/carts/{cart}', [CartController::class, 'destroy'])->name('client.carts.destroy');
+
 });
 
 require __DIR__ . '/auth.php';
