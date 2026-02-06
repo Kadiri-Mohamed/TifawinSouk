@@ -41,12 +41,12 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
-    Route::get('Admin/suppliers', [SupplierController::class, 'index'])->name('admin.suppliers.index');
-    Route::get('Admin/suppliers/create', [SupplierController::class, 'create'])->name('admin.suppliers.create');
-    Route::post('Admin/suppliers', [SupplierController::class, 'store'])->name('admin.suppliers.store');
-    Route::get('Admin/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('admin.suppliers.edit');
-    Route::put('Admin/suppliers/{supplier}', [SupplierController::class, 'update'])->name('admin.suppliers.update');
-    Route::delete('Admin/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('admin.suppliers.destroy');
+    Route::get('admin/suppliers', [SupplierController::class, 'index'])->name('admin.suppliers.index');
+    Route::get('admin/suppliers/create', [SupplierController::class, 'create'])->name('admin.suppliers.create');
+    Route::post('admin/suppliers', [SupplierController::class, 'store'])->name('admin.suppliers.store');
+    Route::get('admin/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('admin.suppliers.edit');
+    Route::put('admin/suppliers/{supplier}', [SupplierController::class, 'update'])->name('admin.suppliers.update');
+    Route::delete('admin/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('admin.suppliers.destroy');
 
     Route::get('admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
     Route::get('admin/orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
@@ -57,13 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/order-items', [AdminOrderItemController::class, 'index'])->name('admin.order-items.index');
     
 
-        Route::get('Client/carts', [CartController::class, 'index'])->name('client.carts.index');
-    Route::get('Client/carts/create', [CartController::class, 'create'])->name('client.carts.create');
-    Route::post('Client/carts', [CartController::class, 'store'])->name('client.carts.store');
-    Route::get('Client/carts/{cart}/edit', [CartController::class, 'edit'])->name('client.carts.edit');
-    Route::put('Client/carts/{cart}', [CartController::class, 'update'])->name('client.carts.update');
-    Route::delete('Client/carts/{cart}', [CartController::class, 'destroy'])->name('client.carts.destroy');
-
+        Route::get('/cart', [CartController::class, 'index'])->name('client.carts.index');
+    
 });
 
 require __DIR__ . '/auth.php';
