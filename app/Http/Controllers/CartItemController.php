@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartItemController extends Controller
 {
@@ -12,7 +14,10 @@ class CartItemController extends Controller
      */
     public function index()
     {
-        //
+        $cart = Auth::user()->cart;
+        $items = $cart ? $cart->items()->with('product')->get() : collect([]);
+
+        return view('cart.index', compact('items'));
     }
 
     /**
@@ -28,7 +33,29 @@ class CartItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validated = $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $cart = Auth::user()->cart;
+
+        $product = Product::findOrFail($validated['product_id']);
+
+        $cartItem = $cart->items()->where('product_id', $validated['product_id'])->first();
+
+        if ($cartItem) {
+            $cartItem->increment('quantity', $validated['quantity']);
+        } else {
+            $cart->items()->create([
+                'product_id' => $validated['product_id'],
+                'quantity' => $validated['quantity'],
+                'price' => $product->price,
+            ]);
+        }
+
+        return back();
     }
 
     /**
@@ -52,7 +79,13 @@ class CartItemController extends Controller
      */
     public function update(Request $request, CartItem $cartItem)
     {
-        //
+        $validated = $request->validate([
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $cartItem->update(['quantity' => $validated['quantity']]);
+
+        return back();
     }
 
     /**
@@ -60,6 +93,7 @@ class CartItemController extends Controller
      */
     public function destroy(CartItem $cartItem)
     {
-        //
+        $cartItem->delete();
+        return back();
     }
 }
