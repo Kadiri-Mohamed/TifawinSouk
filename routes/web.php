@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\OrderItemController as AdminOrderItemController;
 use App\Http\Controllers\Client\CartController;
@@ -33,13 +33,13 @@ Route::middleware('auth')->group(function () {
     Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
     Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
-    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products.index');
-    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-    Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
-    Route::get('/admin/products/{product}', [ProductController::class, 'show'])->name('admin.products.show');
-    Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
-    Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
-    Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+    Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.products.index');
+    Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/admin/products/{product}', [AdminProductController::class, 'show'])->name('admin.products.show');
+    Route::get('/admin/products/{product}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/admin/products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('/admin/products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
     Route::get('admin/suppliers', [SupplierController::class, 'index'])->name('admin.suppliers.index');
     Route::get('admin/suppliers/create', [SupplierController::class, 'create'])->name('admin.suppliers.create');
