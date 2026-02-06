@@ -16,9 +16,9 @@ class CartItemController extends Controller
     public function index()
     {
         $cart = Auth::user()->cart;
-        $items = $cart ? $cart->items()->with('product')->get() : collect([]);
+        $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
 
-        return view('cart.index', compact('items'));
+        return view('cart.index', compact('cartItems'));
     }
 
     /**
@@ -44,12 +44,12 @@ class CartItemController extends Controller
 
             $product = Product::findOrFail($validated['product_id']);
 
-            $cartItem = $cart->items()->where('product_id', $validated['product_id'])->first();
+            $cartItem = $cart->cartItems()->where('product_id', $validated['product_id'])->first();
 
             if ($cartItem) {
                 $cartItem->increment('quantity', $validated['quantity']);
             } else {
-                $cart->items()->create([
+                $cart->cartItems()->create([
                     'product_id' => $validated['product_id'],
                     'quantity' => $validated['quantity'],
                     'price' => $product->price,
