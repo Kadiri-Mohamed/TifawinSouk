@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\OrderItemController as AdminOrderItemController;
 
 use App\Http\Controllers\Admin\SupplierController;
 
@@ -46,10 +47,13 @@ Route::middleware('auth')->group(function () {
     Route::put('Admin/suppliers/{supplier}', [SupplierController::class, 'update'])->name('admin.suppliers.update');
     Route::delete('Admin/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('admin.suppliers.destroy');
 
-    Route::get('admin/orders', [OrderController::class, 'index'])->name('admin.orders.index');
-    Route::get('admin/orders/{order}', [OrderController::class, 'show'])->name('admin.orders.show');
-    Route::put('admin/orders/{order}', [OrderController::class, 'update'])->name('admin.orders.update');
-    Route::delete('admin/orders/{order}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
+    Route::get('admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+    Route::get('admin/orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+    Route::put('admin/orders/{order}', [AdminOrderController::class, 'update'])->name('admin.orders.update');
+    Route::delete('admin/orders/{order}', [AdminOrderController::class, 'destroy'])->name('admin.orders.destroy');
+
+    Route::get('admin/order-items/{order}', [AdminOrderItemController::class, 'getOrderItems'])->name('admin.order-items.getOrderItems');
+    Route::get('admin/order-items', [AdminOrderItemController::class, 'index'])->name('admin.order-items.index');
     
 });
 
