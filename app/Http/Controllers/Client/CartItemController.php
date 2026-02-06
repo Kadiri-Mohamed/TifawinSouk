@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -38,8 +39,8 @@ class CartItemController extends Controller
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
         ]);
-
-        $cart = Auth::user()->cart;
+        
+        $cart = Auth::user()->cart ?? Auth::user()->cart()->create();
 
         $product = Product::findOrFail($validated['product_id']);
 
