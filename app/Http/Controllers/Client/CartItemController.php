@@ -34,29 +34,32 @@ class CartItemController extends Controller
      */
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'required|integer|min:1',
         ]);
-        
-        $cart = Auth::user()->cart ?? Auth::user()->cart()->create();
 
-        $product = Product::findOrFail($validated['product_id']);
+        try {
+            $cart = Auth::user()->cart ?? Auth::user()->cart()->create();
 
-        $cartItem = $cart->items()->where('product_id', $validated['product_id'])->first();
+            $product = Product::findOrFail($validated['product_id']);
 
-        if ($cartItem) {
-            $cartItem->increment('quantity', $validated['quantity']);
-        } else {
-            $cart->items()->create([
-                'product_id' => $validated['product_id'],
-                'quantity' => $validated['quantity'],
-                'price' => $product->price,
-            ]);
+            $cartItem = $cart->items()->where('product_id', $validated['product_id'])->first();
+
+            if ($cartItem) {
+                $cartItem->increment('quantity', $validated['quantity']);
+            } else {
+                $cart->items()->create([
+                    'product_id' => $validated['product_id'],
+                    'quantity' => $validated['quantity'],
+                    'price' => $product->price,
+                ]);
+            }
+
+            return back();
+        } catch (\Exception $e) {
+            return back()->with($e->getMessage());
         }
-
-        return back();
     }
 
     /**
@@ -84,9 +87,12 @@ class CartItemController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $cartItem->update(['quantity' => $validated['quantity']]);
-
-        return back();
+        try {
+            $cartItem->update(['quantity' => $validated['quantity']]);
+            return back();
+        } catch (\Exception $e) {
+            return back();
+        }
     }
 
     /**
@@ -94,7 +100,11 @@ class CartItemController extends Controller
      */
     public function destroy(CartItem $cartItem)
     {
-        $cartItem->delete();
-        return back();
+        try {
+            $cartItem->delete();
+            return back();
+        } catch (\Exception $e) {
+            return back();
+        }
     }
 }
