@@ -9,8 +9,7 @@ use App\Http\Controllers\Admin\OrderItemController as AdminOrderItemController;
 use App\Http\Controllers\Client\CartController;
 
 use App\Http\Controllers\Admin\SupplierController;
-
-
+use App\Http\Controllers\Client\ProductController as ClientProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -59,6 +58,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/cart', [CartController::class, 'index'])->name('client.carts.index');
     
+        Route::get('/products',[ClientProductController::class, 'index'])->name('client.products.index');
 });
 
 require __DIR__ . '/auth.php';
