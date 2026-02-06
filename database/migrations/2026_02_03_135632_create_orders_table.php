@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->boolean('is_paid')->default(false);
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
