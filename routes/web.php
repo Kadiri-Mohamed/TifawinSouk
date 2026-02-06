@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
-
+use App\Http\Controllers\Client\CartController;
 
 use App\Http\Controllers\Admin\SupplierController;
 
@@ -45,6 +45,13 @@ Route::middleware('auth')->group(function () {
     Route::get('Admin/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('admin.suppliers.edit');
     Route::put('Admin/suppliers/{supplier}', [SupplierController::class, 'update'])->name('admin.suppliers.update');
     Route::delete('Admin/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('admin.suppliers.destroy');
+
+        Route::get('Client/carts', [CartController::class, 'index'])->name('client.carts.index');
+    Route::get('Client/carts/create', [CartController::class, 'create'])->name('client.carts.create');
+    Route::post('Client/carts', [CartController::class, 'store'])->name('client.carts.store');
+    Route::get('Client/carts/{cart}/edit', [CartController::class, 'edit'])->name('client.carts.edit');
+    Route::put('Client/carts/{cart}', [CartController::class, 'update'])->name('client.carts.update');
+    Route::delete('Client/carts/{cart}', [CartController::class, 'destroy'])->name('client.carts.destroy');
 
 });
 
