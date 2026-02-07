@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+
+    /*
     Route::get('admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
     Route::get('admin/categories/{category}', [CategoryController::class, 'show'])->name('admin.categories.show');
@@ -55,10 +57,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('admin/order-items/{order}', [AdminOrderItemController::class, 'getOrderItems'])->name('admin.order-items.getOrderItems');
     Route::get('admin/order-items', [AdminOrderItemController::class, 'index'])->name('admin.order-items.index');
-    
+    */
 
-        Route::get('/cart', [CartController::class, 'index'])->name('client.carts.index');
-    
+
+    Route::get('/cart', [CartController::class, 'index'])->name('client.carts.index');
 });
 
 require __DIR__ . '/auth.php';
