@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/cart', [CartController::class, 'index'])->name('client.carts.index');
     
         Route::get('/products',[ClientProductController::class, 'index'])->name('client.products.index');
+        Route::get('/products/{product}',[ClientProductController::class, 'show'])->name('client.products.show');
 });
+
+
 
 require __DIR__ . '/auth.php';
