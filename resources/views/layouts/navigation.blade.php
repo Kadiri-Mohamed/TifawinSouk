@@ -15,7 +15,7 @@
                             <span class="text-white font-bold text-xl tracking-wider">TifawinSouk</span>
                         </a>
                     @else
-                        <a href="{{ route('home') }}" class="flex items-center space-x-3">
+                        <a href="{{ route('client.products.index') }}" class="flex items-center space-x-3">
                             <div
                                 class="w-10 h-10 bg-gradient-to-br from-[#f6aa1c] to-[#bc3908] rounded-lg flex items-center justify-center shadow-lg">
                                 <span class="text-[#220901] font-bold text-xl">TS</span>
@@ -56,26 +56,11 @@
                     </div>
                 @else
                 <div class="hidden space-x-2 sm:-my-px sm:ms-10 sm:flex items-center">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')"
+                    <x-nav-link :href="route('client.products.index')" :active="request()->routeIs('home')"
                         class="!text-white hover:!bg-[#f6aa1c]/20">
                         {{ __('Home') }}
                     </x-nav-link>
-
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')"
-                        class="!text-white hover:!bg-[#f6aa1c]/20">
-                        {{ __('Products') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')"
-                        class="!text-white hover:!bg-[#f6aa1c]/20">
-                        {{ __('Categories') }}
-                    </x-nav-link>
-
-                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')"
-                        class="!text-white hover:!bg-[#f6aa1c]/20">
-                        {{ __('Orders') }}
-                    </x-nav-link>
-                </div>
+               </div>
             @endif
             <!-- Settings Dropdown -->
             @if(auth()->user()->role == 'admin')
@@ -121,7 +106,7 @@
                                 @csrf
 
                                 <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                    this.closest('form').submit();"
+                                                        this.closest('form').submit();"
                                     class="hover:!bg-red-100 hover:!text-red-700">
                                     <div class="flex items-center space-x-2">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,7 +162,7 @@
                                 @csrf
 
                                 <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                    this.closest('form').submit();"
+                                                        this.closest('form').submit();"
                                     class="hover:!bg-red-100 hover:!text-red-700">
                                     <div class="flex items-center space-x-2">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
