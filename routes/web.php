@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\OrderItemController as AdminOrderItemController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 use App\Http\Controllers\Admin\SupplierController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
@@ -19,9 +20,9 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'role:admin'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'role:admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -36,7 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::post('admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
         Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');
         Route::delete('admin/categories/{category}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
-
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('/admin/products', [AdminProductController::class, 'index'])->name('admin.products.index');
         Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
         Route::post('/admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');

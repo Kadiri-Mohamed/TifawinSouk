@@ -11,7 +11,7 @@
             </div>
         </div>
     </x-slot>
-
+    <!-- ['productsNumber' => $productsNumber , 'customersNumber' => $customersNumber, 'ordersNumber' => $ordersNumber, 'totalRevenue' => $totalRevenue]; -->
     <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Stats Cards -->
@@ -21,7 +21,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm font-medium">Total Products</p>
-                            <p class="text-3xl font-bold text-[#220901] mt-2">1,254</p>
+                            <p class="text-3xl font-bold text-[#220901] mt-2">{{$states['productsNumber']}}</p>
                         </div>
                         <div class="w-12 h-12 bg-gradient-to-br from-[#f6aa1c] to-[#bc3908] rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-[#220901]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm font-medium">Active Orders</p>
-                            <p class="text-3xl font-bold text-[#220901] mt-2"><!-- orders number --></p>
+                            <p class="text-3xl font-bold text-[#220901] mt-2">{{ $states['ordersNumber'] }}</p>
                         </div>
                         <div class="w-12 h-12 bg-gradient-to-br from-[#bc3908] to-[#941b0c] rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm font-medium">Revenue</p>
-                            <p class="text-3xl font-bold text-[#220901] mt-2"><!--Revenus--></p>
+                            <p class="text-3xl font-bold text-[#220901] mt-2">{{ $states['totalRevenue'] }}</p>
                         </div>
                         <div class="w-12 h-12 bg-gradient-to-br from-[#941b0c] to-[#621708] rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 text-sm font-medium">Customers</p>
-                            <p class="text-3xl font-bold text-[#220901] mt-2"> <!-- Customers number --></p>
+                            <p class="text-3xl font-bold text-[#220901] mt-2">{{ $states['customersNumber'] }}</p>
                         </div>
                         <div class="w-12 h-12 bg-gradient-to-br from-[#621708] to-[#220901] rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,32 +139,73 @@
 
                     <!-- Recent Activity -->
                     <div class="bg-gradient-to-r from-[#220901]/5 to-[#941b0c]/5 rounded-xl p-6 border border-[#220901]/10">
-                        <h4 class="font-bold text-[#220901] mb-4">Recent Activity</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-[#f6aa1c]/20">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-[#f6aa1c] to-[#bc3908] rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-[#220901]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-gray-700">New product added: "Traditional Moroccan Rug"</span>
-                                </div>
-                                <span class="text-sm text-gray-500">2 hours ago</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-[#f6aa1c]/20">
-                                <div class="flex items-center space-x-3">
-                                    <div class="w-8 h-8 bg-gradient-to-br from-[#bc3908] to-[#941b0c] rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                                        </svg>
-                                    </div>
-                                    <span class="text-gray-700">Order #ORD-7894 marked as shipped</span>
-                                </div>
-                                <span class="text-sm text-gray-500">4 hours ago</span>
-                            </div>
-                        </div>
-                    </div>
+    <h4 class="font-bold text-[#220901] mb-4">Recent Activity</h4>
+
+    <div class="space-y-4">
+
+        {{-- Last product added --}}
+        @if($activities['lastProduct'])
+        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-[#f6aa1c]/20">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-[#f6aa1c] to-[#bc3908] rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-[#220901]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                </div>
+                <span class="text-gray-700">
+                    New product added: "{{ $activities['lastProduct']->name }}"
+                </span>
+            </div>
+            <span class="text-sm text-gray-500">
+                {{ $activities['lastProduct']->created_at->diffForHumans() }}
+            </span>
+        </div>
+        @endif
+
+        {{-- Last orders --}}
+        @foreach($activities['lastOrders'] as $order)
+        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-[#f6aa1c]/20">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-[#bc3908] to-[#941b0c] rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                    </svg>
+                </div>
+                <span class="text-gray-700">
+                    Order #{{ $order->id }} marked as {{ ucfirst($order->status) }}
+                </span>
+            </div>
+            <span class="text-sm text-gray-500">
+                {{ $order->updated_at->diffForHumans() }}
+            </span>
+        </div>
+        @endforeach
+
+        {{-- Last customer --}}
+        @if($activities['lastCustomer'])
+        <div class="flex items-center justify-between p-3 bg-white rounded-lg border border-[#f6aa1c]/20">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-gradient-to-br from-[#220901] to-[#941b0c] rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M5.121 17.804A4 4 0 0112 15a4 4 0 016.879 2.804"/>
+                    </svg>
+                </div>
+                <span class="text-gray-700">
+                    New customer registered: {{ $activities['lastCustomer']->name }}
+                </span>
+            </div>
+            <span class="text-sm text-gray-500">
+                {{ $activities['lastCustomer']->created_at->diffForHumans() }}
+            </span>
+        </div>
+        @endif
+
+    </div>
+</div>
+
                 </div>
             </div>
         </div>
