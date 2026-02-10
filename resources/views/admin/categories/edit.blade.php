@@ -6,9 +6,6 @@
             </h2>
             <div class="mt-2 md:mt-0">
                 <a href="{{ route('admin.categories.index') }}" class="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white text-sm font-medium transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
                     Back to Categories
                 </a>
             </div>
@@ -67,9 +64,6 @@
                         <div class="flex items-center justify-end pt-6 border-t border-gray-200 mt-6">
                             <a href="{{ route('admin.categories.index') }}" class="mr-4 text-gray-600 hover:text-gray-800 font-medium">Cancel</a>
                             <button type="submit" class="bg-gradient-to-r from-[#f6aa1c] to-[#bc3908] hover:from-[#bc3908] hover:to-[#941b0c] text-white font-bold py-3 px-8 rounded-xl shadow-md transform hover:scale-105 transition-all duration-300 flex items-center">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
                                 Update Category
                             </button>
                         </div>

@@ -6,15 +6,9 @@
             </h2>
             <div class="mt-2 md:mt-0 flex space-x-2">
                 <a href="{{ route('admin.products.edit', $product) }}" class="inline-flex items-center px-4 py-2 bg-[#f6aa1c] hover:bg-[#d68c0b] border border-transparent rounded-lg text-[#220901] text-sm font-bold shadow-sm transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
                     Edit Product
                 </a>
                 <a href="{{ route('admin.products.index') }}" class="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white text-sm font-medium transition-colors">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
                     Back to List
                 </a>
             </div>
@@ -33,9 +27,7 @@
                                 <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="object-cover w-full h-full transform transition-transform duration-500 group-hover:scale-105">
                                 @else
                                 <div class="flex items-center justify-center h-full w-full bg-gray-50 text-gray-400">
-                                    <svg class="w-20 h-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg>
+                                    <span class="text-sm font-medium">No Image</span>
                                 </div>
                                 @endif
                                 <div class="absolute top-2 right-2">
@@ -73,7 +65,7 @@
                                 <p class="leading-relaxed whitespace-pre-line">{{ $product->description ?: 'No description available for this product.' }}</p>
                             </div>
 
-                            
+
                             <div class="pt-6 border-t border-gray-100 text-xs text-gray-400 flex justify-between">
                                 <span>Created: {{ $product->created_at->format('M d, Y H:i') }}</span>
                                 <span>Last Updated: {{ $product->updated_at->format('M d, Y H:i') }}</span>
