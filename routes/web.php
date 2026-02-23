@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
         Route::get('admin/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
         Route::get('admin/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
-        Route::get('admin/categories/{category}', [CategoryController::class, 'show'])->name('admin.categories.show');
+        Route::get('admin/categories/{h}', [CategoryController::class, 'show'])->name('admin.categories.show');
         Route::get('admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
         Route::post('admin/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
         Route::put('admin/categories/{category}', [CategoryController::class, 'update'])->name('admin.categories.update');

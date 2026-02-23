@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -46,8 +47,9 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index');
     }
 
-    public function show(Category $category)
+    public function show(Category $h)
     {
+    $category = $h;
         return view('admin.categories.show', compact('category'));
     }
 
@@ -83,4 +85,83 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.categories.index');
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function store(Request $request){
+
+        $validated = $request->validate([
+            'title' => 'requierd|min:3|max:20',
+            
+        ]);
+
+        Category::create($validated);
+        DB::table('category')->select(DB::raw(''));
+    }
+
+
+
 }

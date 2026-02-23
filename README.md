@@ -1,59 +1,283 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #f6aa1c 0%, #bc3908 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 32px; color: #220901;">
+        TS
+    </div>
 </p>
 
-## About Laravel
+<h1 align="center">TifawinSouk</h1>
+<p align="center">
+    <strong>Authentic Moroccan E-Commerce Platform</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+    <img src="https://img.shields.io/badge/Laravel-11.x-FF2D20?style=flat-square&logo=laravel" alt="Laravel">
+    <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat-square&logo=php" alt="PHP">
+    <img src="https://img.shields.io/badge/Tailwind-3.x-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind CSS">
+    <img src="https://img.shields.io/badge/Database-SQLite-003B57?style=flat-square&logo=sqlite" alt="SQLite">
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📋 About TifawinSouk
 
-## Learning Laravel
+TifawinSouk is a modern e-commerce platform dedicated to showcasing and selling authentic Moroccan products and handcrafted items. The platform provides a seamless shopping experience for customers while offering comprehensive management tools for administrators.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### ✨ Key Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Product Management**: Add, edit, and manage products with categories and suppliers
+- **Category Organization**: Organize products into logical categories
+- **Inventory Tracking**: Real-time stock management
+- **Order Management**: Complete order tracking and status updates
+- **User Authentication**: Secure login and registration system
+- **Shopping Cart**: Easy-to-use shopping cart functionality
+- **Admin Dashboard**: Comprehensive analytics and quick access controls
+- **Responsive Design**: Mobile-friendly interface with modern UI
+- **Activity Tracking**: Monitor recent products, orders, and customers
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 🚀 Getting Started
 
-### Premium Partners
+### Prerequisites
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- PHP 8.2 or higher
+- Composer
+- Node.js & npm
+- SQLite or MySQL
 
-## Contributing
+### Installation
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Kadiri-Mohamed/TifawinSouk.git
+   cd TifawinSouk
+   ```
 
-## Code of Conduct
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Install JavaScript dependencies**
+   ```bash
+   npm install
+   ```
 
-## Security Vulnerabilities
+4. **Setup environment file**
+   ```bash
+   cp .env.example .env
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. **Generate application key**
+   ```bash
+   php artisan key:generate
+   ```
 
-## License
+6. **Run database migrations**
+   ```bash
+   php artisan migrate
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7. **Seed the database** (optional - adds sample data)
+   ```bash
+   php artisan db:seed
+   ```
+
+8. **Build assets**
+   ```bash
+   npm run build
+   ```
+
+9. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+The application will be accessible at `http://127.0.0.1:8000`
+
+---
+
+## 📁 Project Structure
+
+```
+TifawinSouk/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/        # Application controllers
+│   │       ├── Admin/          # Admin panel controllers
+│   │       └── Client/         # Client side controllers
+│   ├── Models/                 # Eloquent models
+│   └── Providers/              # Service providers
+├── database/
+│   ├── migrations/             # Database migrations
+│   ├── factories/              # Model factories
+│   └── seeders/                # Database seeders
+├── resources/
+│   ├── views/                  # Blade templates
+│   │   ├── admin/              # Admin panel views
+│   │   ├── client/             # Client side views
+│   │   └── layouts/            # Layout components
+│   ├── css/                    # CSS stylesheets
+│   └── js/                     # JavaScript files
+├── routes/
+│   ├── web.php                 # Web routes
+│   └── auth.php                # Authentication routes
+├── config/                     # Configuration files
+└── public/                     # Public assets
+```
+
+---
+
+## 🗄️ Database Schema
+
+### Key Tables
+
+- **users**: User accounts and authentication
+- **categories**: Product categories
+- **products**: Product inventory
+- **suppliers**: Supplier information
+- **carts**: Shopping cart items
+- **orders**: Customer orders
+- **order_items**: Items within orders
+
+---
+
+## 🎯 Main Features
+
+### For Customers
+- Browse and search products
+- Filter by category
+- View product details
+- Add items to shopping cart
+- Manage user profile
+- View order history
+
+### For Administrators
+- **Dashboard**: Overview of key metrics
+- **Product Management**: CRUD operations for products
+- **Category Management**: Organize product categories
+- **Order Management**: Track and update orders
+- **Supplier Management**: Manage supplier information
+- **Analytics**: View recent activity and statistics
+
+---
+
+## 🛠️ Technology Stack
+
+- **Backend**: Laravel 11.x
+- **Frontend**: Blade Templates, Tailwind CSS
+- **Database**: SQLite (development)
+- **Build Tool**: Vite
+- **Package Manager**: Composer, npm
+- **Authentication**: Laravel built-in authentication
+
+---
+
+## 📦 Dependencies
+
+Key packages used in this project:
+
+- `laravel/framework`: Core framework
+- `tailwindcss`: Utility-first CSS framework
+- `@tailwindcss/forms`: Form styling
+- `alpinejs`: Lightweight JavaScript framework
+
+---
+
+## 🔐 Roles & Permissions
+
+The application supports different user roles:
+
+- **Admin**: Full access to dashboard and management features
+- **User/Customer**: Access to shopping and profile features
+
+---
+
+## 📝 Available Scripts
+
+```bash
+# Development
+npm run dev          # Watch for changes
+npm run build        # Build for production
+
+# Artisan commands
+php artisan migrate              # Run migrations
+php artisan db:seed              # Seed database
+php artisan tinker               # Interactive shell
+php artisan serve                # Start dev server
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run tests
+php artisan test
+
+# Run specific test file
+php artisan test tests/Feature/RegisterTest.php
+```
+
+---
+
+## 📄 Configuration
+
+Key configuration files:
+
+- `.env` - Environment variables
+- `config/app.php` - Application settings
+- `config/database.php` - Database configuration
+- `config/auth.php` - Authentication settings
+- `config/filesystems.php` - File storage configuration
+
+---
+
+## 🐛 Troubleshooting
+
+### Database Issues
+```bash
+# Reset database
+php artisan migrate:fresh --seed
+```
+
+### Cache Issues
+```bash
+# Clear all caches
+php artisan cache:clear
+php artisan config:clear
+php artisan view:clear
+```
+
+### Asset Issues
+```bash
+# Rebuild assets
+npm run build
+```
+
+---
+
+## 🤝 Contributing
+
+-- Ali kara
+
+-- Hajar Elmouhili
+
+---
+
+## 📄 License
+
+This project is open-source software licensed under the [MIT license](LICENSE).
+
+
+---
+
+## 📞 Support
+
+For support, please create an issue in the repository or contact the development team.
+
+---
+
+<p align="center">
+    Made with ❤️ for Moroccan merchants and artisans
+</p>
